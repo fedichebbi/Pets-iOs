@@ -20,6 +20,7 @@
 		54507DF0225E3DFF00BF6669 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54507DEF225E3DFF00BF6669 /* CollectionViewCell.swift */; };
 		54B525DA2270DF3B003AFA43 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B525D92270DF3B003AFA43 /* PostsViewController.swift */; };
 		54B525DC2270E04D003AFA43 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B525DB2270E04D003AFA43 /* PostCell.swift */; };
+		54D7C272228CB76200C0902E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D7C271228CB76200C0902E /* SignUpViewController.swift */; };
 		54D879DD227A116900A69349 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D879DB227A116900A69349 /* FBSDKCoreKit.framework */; };
 		54D879DE227A116900A69349 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D879DC227A116900A69349 /* FBSDKLoginKit.framework */; };
 		559A6B8589203585D6161D3F /* Pods_Pets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26239465A0992BA962F95649 /* Pods_Pets.framework */; };
@@ -44,6 +45,7 @@
 		54507DEF225E3DFF00BF6669 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		54B525D92270DF3B003AFA43 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		54B525DB2270E04D003AFA43 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		54D7C271228CB76200C0902E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		54D879DB227A116900A69349 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		54D879DC227A116900A69349 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				544DF887227A118A003034B2 /* AddPostViewController.swift */,
 				544DF889227A24F4003034B2 /* MyProfileViewController.swift */,
 				544DF88B227A2D64003034B2 /* SettingsViewController.swift */,
+				54D7C271228CB76200C0902E /* SignUpViewController.swift */,
 			);
 			path = Pets;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D7C272228CB76200C0902E /* SignUpViewController.swift in Sources */,
 				54B525DC2270E04D003AFA43 /* PostCell.swift in Sources */,
 				54B525DA2270DF3B003AFA43 /* PostsViewController.swift in Sources */,
 				54507DF0225E3DFF00BF6669 /* CollectionViewCell.swift in Sources */,

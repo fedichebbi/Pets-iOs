@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: ViewController {
 
@@ -39,5 +40,26 @@ class SettingsViewController: ViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func logoutAction(_ sender: Any) {
+        self.deleteAllData()
+        self.logout()
+    }
+    @IBAction func deleteAccountAction(_ sender: Any) {
+        self.deleteAllData()
+        self.logout()
+    }
+    
+    func logout(){
+        performSegue(withIdentifier: "logout", sender: self)
+    }
+    
+    func deleteAllData()
+    {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
+        do { try context.execute(DelAllReqVar) }
+        catch { print(error) }
+    }
+    
 }

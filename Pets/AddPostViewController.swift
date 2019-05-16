@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import CoreData
 
 class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewDataSource , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -25,6 +26,7 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
     var postType = ""
     var selectedTown = ""
     var imageURL = ""
+    var userId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +43,27 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
         uploadImageButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
         uploadImageButton.layer.shadowRadius = 2.0
         uploadImageButton.layer.shadowOpacity = 1.0
+        
+        /*let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                let i = data.value(forKey: "id") as! String
+                print (i)
+            }
+        } catch {
+            print("failed getData")
+        }*/
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
+    
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return towns.count
@@ -163,6 +181,8 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
         }
         
     }
+    
+    
     
     
 }

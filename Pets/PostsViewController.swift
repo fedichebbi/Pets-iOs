@@ -45,17 +45,11 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
                     posts.add(post)
                 }
                 // names[i]=tvShowDict["name"] as! String
-                
             }
-            
-            
             self.posts = posts
-            
             self.collectionView.reloadData()        //seasonImg.image = UIImage(named: image!)
         /*seasonImg.af_setImage(withURL: URL(string: image!)!)
         summary.text = overview!*/
-        
-        
         // Do any additional setup after loading the view.
     }
     }
@@ -63,6 +57,26 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         return posts.count
     }
     
+    @IBAction func deleteAction(_ sender: Any) {
+        print("delete from pvc")
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete", message: "Do you really want to delete this post?", preferredStyle: .alert)
+        // Create the actions
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            print("OK Pressed")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+        }
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
@@ -108,7 +122,6 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         cell.callButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
         cell.callButton.layer.shadowRadius = 2.0
         cell.callButton.layer.shadowOpacity = 1.0
-        
         return cell
     }
     

@@ -9,15 +9,41 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
+import CoreData
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var _username: UITextField!
     @IBOutlet weak var _password: UITextField!
     @IBOutlet weak var _login_button: UIButton!
     
+    /*override func loadView() {
+        super.loadView()
+        performSegue(withIdentifier: "login_success", sender: self)
+    }*/
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            performSegue(withIdentifier: "login_success", sender: self)
+            for data in result as! [NSManagedObject] {
+                let u = data.value(forKey: "username") as! String
+                let p = data.value(forKey: "password") as! String
+                let i = data.value(forKey: "id") as! String
+                print ("connected user",u,p,i)
+            }
+        } catch {
+            print("failed getData")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     @IBAction func login_action(_ sender: Any) {
@@ -39,13 +65,47 @@ class ViewController: UIViewController {
             let user = response.result.value as! Dictionary<String,String>
             if (user != Dictionary<String,String>()){
                 let usr = user["username"] as! String
-                print(usr)
+                let pwd = user["password"] as! String
+                let id = user["id"] as! String
+                
+                //print(usr)
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                let entity = NSEntityDescription.entity(forEntityName: "ConnectedUser", in: context)
+                let newEntity = NSManagedObject(entity: entity!, insertInto: context)
+                
+                newEntity.setValue(usr, forKey: "username")
+                newEntity.setValue(pwd, forKey: "password")
+                newEntity.setValue(id, forKey: "id")
+                
+                do {
+                    try context.save()
+                    print("user saved to coreData")
+                } catch {
+                    print("failed saving to coreData")
+                }
+                
                 self.loginSuccess()
             }
             else {print("wrong data")}
         }
     }
     
+    func getData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                let u = data.value(forKey: "username") as! String
+                let p = data.value(forKey: "password") as! String
+                let i = data.value(forKey: "id") as! String
+                print (u,p,i)
+            }
+        } catch {
+            print("failed getData")
+        }
+    }
     
     @IBAction func signup_action(_ sender: Any) {
         performSegue(withIdentifier: "signup", sender: self)
