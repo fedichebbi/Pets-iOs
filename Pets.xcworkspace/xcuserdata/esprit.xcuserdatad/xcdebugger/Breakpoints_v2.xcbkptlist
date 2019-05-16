@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pets/SettingsViewController.swift"
+            timestampString = "579706973.78923"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "SettingsViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.logoutButton.getter : weak Swift.Optional&lt;__C.UIButton&gt;"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694112.015108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.logoutButton.setter : weak Swift.Optional&lt;__C.UIButton&gt;"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694112.019344"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Pets.SettingsViewController"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694112.023332"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Pets.SettingsViewController&gt;"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694112.0303741"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pets/SettingsViewController.swift"
+            timestampString = "579706973.789632"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "SettingsViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.deleteAccountButton.getter : weak Swift.Optional&lt;__C.UIButton&gt;"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694136.208624"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.deleteAccountButton.setter : weak Swift.Optional&lt;__C.UIButton&gt;"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694136.2112809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Pets.SettingsViewController"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694136.213015"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Pets.SettingsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Pets.SettingsViewController&gt;"
+                  moduleName = "Pets"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/esprit/Desktop/Pets-iOs/Pets/SettingsViewController.swift"
+                  timestampString = "579694136.2146111"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SettingsViewController: ViewController {
+class SettingsViewController: UIViewController {
 
     @IBOutlet weak var deleteAccountButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!

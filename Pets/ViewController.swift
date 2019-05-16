@@ -17,17 +17,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var _password: UITextField!
     @IBOutlet weak var _login_button: UIButton!
     
-    /*override func loadView() {
-        super.loadView()
-        performSegue(withIdentifier: "login_success", sender: self)
-    }*/
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)
+            if (result.isEmpty)
+            {print("result empty")}
+            else{
             performSegue(withIdentifier: "login_success", sender: self)
             for data in result as! [NSManagedObject] {
                 let u = data.value(forKey: "username") as! String
@@ -35,16 +35,17 @@ class ViewController: UIViewController {
                 let i = data.value(forKey: "id") as! String
                 print ("connected user",u,p,i)
             }
+            }
         } catch {
             print("failed getData")
         }
     }
     
-    override func viewDidLoad() {
+    /*override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-    }
+    }*/
     
     @IBAction func login_action(_ sender: Any) {
         let username = _username.text
@@ -67,6 +68,7 @@ class ViewController: UIViewController {
                 let usr = user["username"] as! String
                 let pwd = user["password"] as! String
                 let id = user["id"] as! String
+                let pho = user["phone"] as! String
                 
                 //print(usr)
                 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -76,6 +78,7 @@ class ViewController: UIViewController {
                 newEntity.setValue(usr, forKey: "username")
                 newEntity.setValue(pwd, forKey: "password")
                 newEntity.setValue(id, forKey: "id")
+                newEntity.setValue(pho, forKey: "phone")
                 
                 do {
                     try context.save()
@@ -100,7 +103,8 @@ class ViewController: UIViewController {
                 let u = data.value(forKey: "username") as! String
                 let p = data.value(forKey: "password") as! String
                 let i = data.value(forKey: "id") as! String
-                print (u,p,i)
+                let ph = data.value(forKey: "phone") as! String
+                print (u,p,i,ph)
             }
         } catch {
             print("failed getData")

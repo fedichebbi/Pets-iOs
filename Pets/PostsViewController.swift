@@ -9,10 +9,13 @@
 import UIKit
 import Alamofire
 import AlamofireImage
+import CoreData
 
 class PostsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var type:String?
+    var userId = ""
+    var hisPosts = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -31,6 +34,19 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                let i = data.value(forKey: "id") as! String
+                userId = i
+            }
+        } catch {
+            print("failed getData")
+        }
+        
         Alamofire.request("http://41.226.11.252:1180/pets/post/allPosts.php").responseJSON{
             response in
             let postsArray = (response.result.value as! NSArray)
@@ -38,9 +54,17 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
             for post in postsArray {
                 let postDict = post as! Dictionary<String,Any>
                 let postType = postDict["type"] as! String
-                print(postType)
+                let userDict = postDict["user_id"] as! Dictionary<String,Any>
+                let user = userDict["id"] as! String
+                print(user)
                 //print(postDict["town"] as! String)
-                if (postType == self.type!.lowercased()){
+                if (self.type == "My posts") {
+                    if (user == self.userId) {
+                        posts.add(post)
+                        self.hisPosts = true
+                    }
+                }
+                else if (postType == self.type!.lowercased()){
                     print("adada")
                     posts.add(post)
                 }
@@ -57,7 +81,7 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         return posts.count
     }
     
-    @IBAction func deleteAction(_ sender: Any) {
+    /*@IBAction func deleteAction(_ sender: Any) {
         print("delete from pvc")
         // Create the alert controller
         let alertController = UIAlertController(title: "Delete", message: "Do you really want to delete this post?", preferredStyle: .alert)
@@ -65,6 +89,13 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
             UIAlertAction in
             print("OK Pressed")
+            
+            /*let url = "http://41.226.11.252:1180/pets/post/deletePost.php?id="+self.userId
+            Alamofire.request(url).responseJSON{
+                response in
+                print ("deleted")
+                self.collectionView.reloadData()
+            }*/
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
             UIAlertAction in
@@ -75,8 +106,9 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         alertController.addAction(cancelAction)
         // Present the controller
         self.present(alertController, animated: true, completion: nil)
-        
-    }
+    }*/
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
@@ -122,6 +154,12 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         cell.callButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
         cell.callButton.layer.shadowRadius = 2.0
         cell.callButton.layer.shadowOpacity = 1.0
+        
+        if (hisPosts) {
+            cell.deleteButton.isHidden = false
+        } else {
+            cell.deleteButton.isHidden = true
+        }
         return cell
     }
     

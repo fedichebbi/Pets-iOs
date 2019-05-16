@@ -309,7 +309,7 @@
                     <connections>
                         <outlet property="deleteAccountButton" destination="GEf-ah-WRx" id="iER-J5-Cg5"/>
                         <outlet property="logoutButton" destination="yvv-hG-R8E" id="BhJ-xm-qkB"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logout" id="omA-E9-9wM"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="logout" id="SO6-gL-7Wh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGh-oN-Jbj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -341,17 +341,6 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_username" translatesAutoresizingMaskIntoConstraints="NO" id="iBd-M0-HQb">
-                                <rect key="frame" x="16" y="421" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R8D-t0-wm5">
-                                <rect key="frame" x="64" y="426" width="295" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ece-dL-dbE">
                                 <rect key="frame" x="64" y="476" width="295" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -371,18 +360,30 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveAction:" destination="qu5-B2-uTr" eventType="touchUpInside" id="ZTW-Q9-XRG"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKR-hN-Ufk">
+                                <rect key="frame" x="36" y="379" width="304" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nH9-Mz-fPS"/>
                     </view>
                     <connections>
+                        <outlet property="phone" destination="ece-dL-dbE" id="OAs-yz-neM"/>
                         <outlet property="saveButton" destination="Qrh-Md-Hf6" id="zeq-9W-Qmd"/>
+                        <outlet property="username" destination="hKR-hN-Ufk" id="Rh8-dE-D5h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SUs-av-YAf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3204" y="-597"/>
+            <point key="canvasLocation" x="3204" y="-597.75112443778119"/>
         </scene>
         <!--Add Post View Controller-->
         <scene sceneID="LR7-N0-yoH">
@@ -576,6 +577,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="callButton" destination="D6y-A0-O5k" id="69i-cc-Pkr"/>
+                                            <outlet property="deleteButton" destination="b5c-U7-bnI" id="byZ-WI-Xcy"/>
                                             <outlet property="postDate" destination="nHG-PV-kfB" id="kbf-aN-2xy"/>
                                             <outlet property="postDescription" destination="v8i-e2-kLx" id="Ke3-dG-22A"/>
                                             <outlet property="postIcon" destination="k2w-7c-dSa" id="Yj6-gX-Ygr"/>
@@ -625,12 +627,11 @@
         <image name="app_icon" width="256" height="256"/>
         <image name="clear" width="512" height="512"/>
         <image name="ic_phone" width="256" height="256"/>
-        <image name="ic_username" width="256" height="256"/>
         <image name="myprofile" width="256" height="256"/>
         <image name="ph" width="240" height="240"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="omA-E9-9wM"/>
+        <segue reference="SO6-gL-7Wh"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.2470588235" green="0.64705882349999999" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -3,9 +3,10 @@
     <entity name="ConnectedUser" representedClassName="ConnectedUser" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ConnectedUser" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="ConnectedUser" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

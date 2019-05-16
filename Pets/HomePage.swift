@@ -22,8 +22,8 @@ class HomePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
         UIImage(named: "plus")!,
         UIImage(named: "lost")!,
         UIImage(named: "found")!,
-        UIImage(named: "myposts")!,
         UIImage(named: "myprofile")!,
+        UIImage(named: "myposts")!,
         UIImage(named: "settings")!
         ]
     
@@ -96,6 +96,9 @@ class HomePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
         }
         else if (itemLabels[indexPath.item] == "Settings") {
             performSegue(withIdentifier: "toSettings", sender: indexPath)
+        }
+        else if (itemLabels[indexPath.item] == "My posts") {
+            performSegue(withIdentifier: "toLost", sender: indexPath)
         }
         
         

@@ -10,7 +10,7 @@ import Alamofire
 import AlamofireImage
 import CoreData
 
-class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewDataSource , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddPostViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var petTypePicker: UISegmentedControl!
     @IBOutlet weak var postTypePicker: UISegmentedControl!
@@ -24,7 +24,7 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
     let imagePicker = UIImagePickerController()
     var petType = ""
     var postType = ""
-    var selectedTown = ""
+    var selectedTown = "Ariena"
     var imageURL = ""
     var userId = ""
     
@@ -44,7 +44,7 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
         uploadImageButton.layer.shadowRadius = 2.0
         uploadImageButton.layer.shadowOpacity = 1.0
         
-        /*let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
         request.returnsObjectsAsFaults = false
         do {
@@ -52,10 +52,11 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
             for data in result as! [NSManagedObject] {
                 let i = data.value(forKey: "id") as! String
                 print (i)
+                userId = i
             }
         } catch {
             print("failed getData")
-        }*/
+        }
         
     }
     
@@ -72,7 +73,7 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let valueSelected = towns[row] as String
         selectedTown = valueSelected
-        print ("selected town" , selectedTown, valueSelected)
+        //print ("selected town" , selectedTown, valueSelected)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -145,20 +146,36 @@ class AddPostViewController: ViewController, UIPickerViewDelegate, UIPickerViewD
             print("description", petDescription.text!)
             print("selected town", selectedTown)
             let desc = petDescription.text
+            
             var postType = ""
             if (postTypePicker.selectedSegmentIndex == 0)
             {postType = "found"}
             else
             {postType = "lost"}
+            
+            var pt = ""
+            if (petTypePicker.selectedSegmentIndex == 0)
+            {pt = "cat"}
+            else if (petTypePicker.selectedSegmentIndex == 1)
+            {pt = "dog"}
+            else
+            {pt = "other"}
+            
             let urlString = "http://41.226.11.252:1180/pets/post/addPost.php"
+            
             let now = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let myDate = formatter.string(from: now as Date)
+        
+            
             let descri = "{\"description\":\""+desc!+"\""
             let pet = descri + ",\"petImage\":\""+imageURL+"\""
             let type = pet + ",\"type\":\""+postType+"\""
-            let user = type + ",\"user_id\":\"60\""
-            let petType = user + ",\"petType\":\""+"cat"+"\""
+            let user = type + ",\"user_id\":\""+userId+"\""
+            let petType = user + ",\"petType\":\""+pt+"\""
             let town = petType + ",\"town\":\""+selectedTown+"\""
-            let dates = town + ",\"date\":\""+"2000-06-09"+"\"}"
+            let dates = town + ",\"date\":\""+myDate+"\"}"
             var json = dates
             json = String(json.filter { !"\r\n\n\t\r".contains($0) })
             print(json)

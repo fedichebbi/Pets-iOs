@@ -10,6 +10,7 @@ import UIKit
 
 class PostCell: UICollectionViewCell {
     
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var postTag: UIImageView!
     @IBOutlet weak var postDate: UILabel!
