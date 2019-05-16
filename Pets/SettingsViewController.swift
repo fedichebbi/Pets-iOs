@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var deleteAccountButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
+    var username = ""
+    var id = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,21 @@ class SettingsViewController: UIViewController {
         logoutButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
         logoutButton.layer.shadowRadius = 2.0
         logoutButton.layer.shadowOpacity = 1.0
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                let u = data.value(forKey: "username") as! String
+                let i = data.value(forKey: "id") as! String
+                username = u
+                id = i
+            }
+        } catch {
+            print("failed getData")
+        }
     }
     
 
@@ -45,8 +63,33 @@ class SettingsViewController: UIViewController {
         self.logout()
     }
     @IBAction func deleteAccountAction(_ sender: Any) {
-        self.deleteAllData()
-        self.logout()
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to permanently delete your account " + username + "?", preferredStyle: .alert)
+        // Create the actions
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            print("OK Pressed")
+            
+            let url = "http://41.226.11.252:1180/pets/user/deleteUser.php?id="+self.id
+            Alamofire.request(url).responseJSON{
+            response in
+            print ("deleted")
+            }
+            self.deleteAllData()
+            self.logout()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+        
+        
     }
     
     func logout(){
