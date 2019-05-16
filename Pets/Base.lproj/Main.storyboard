@@ -570,7 +570,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="clear"/>
                                                     <connections>
-                                                        <action selector="deleteAction:" destination="j7I-Nz-WcI" eventType="touchUpInside" id="qIQ-tL-6ey"/>
+                                                        <action selector="deleteAction:" destination="m82-dN-Ctg" eventType="touchUpInside" id="nAJ-6d-ahg"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

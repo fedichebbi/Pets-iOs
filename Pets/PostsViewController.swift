@@ -11,7 +11,42 @@ import Alamofire
 import AlamofireImage
 import CoreData
 
-class PostsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func btnDeleteTapped(cell: PostCell) {
+        let indexPath = self.collectionView.indexPath(for: cell)
+        print("index paaaaaath",indexPath!.row)
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete", message: "Do you really want to delete this post?", preferredStyle: .alert)
+        // Create the actions
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            print("OK Pressed")
+            
+            let postdict = self.posts[indexPath!.row] as! Dictionary<String,Any>
+            let postid = postdict["id"] as? String
+            print("postid", postid!)
+            
+            let url = "http://41.226.11.252:1180/pets/post/deletePost.php?id="+postid!
+            
+            Alamofire.request(url).responseJSON{
+            response in
+            print ("deleted")
+            self.posts.removeObject(at: indexPath!.row)
+            self.collectionView.reloadData()
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+        }
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     var type:String?
     var userId = ""
@@ -30,7 +65,7 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         UIImage(named: "tag_green")!
     ]
     
-    var posts:NSArray = []
+    var posts:NSMutableArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -160,6 +195,8 @@ class PostsViewController: UIViewController, UICollectionViewDelegate, UICollect
         } else {
             cell.deleteButton.isHidden = true
         }
+        
+        cell.delegate = self
         return cell
     }
     

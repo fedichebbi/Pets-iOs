@@ -8,9 +8,25 @@
 
 import UIKit
 
+//1. delegate method
+protocol MyCellDelegate: AnyObject {
+    func btnDeleteTapped(cell: PostCell)
+}
+
 class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var deleteButton: UIButton!
+    
+    //2. create delegate variable
+    weak var delegate: MyCellDelegate?
+    
+    @IBAction func deleteAction(_ sender: Any) {
+        print("delete from cell")
+        //4. call delegate method
+        //check delegate is not nil with `?`
+        delegate?.btnDeleteTapped(cell: self)
+    }
+    
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var postTag: UIImageView!
     @IBOutlet weak var postDate: UILabel!
