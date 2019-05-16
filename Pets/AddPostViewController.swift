@@ -17,7 +17,7 @@ class AddPostViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var uploadImageButton: UIButton!
-    @IBOutlet weak var petDescription: UITextField!
+    @IBOutlet weak var petDescription: UITextView!
     @IBOutlet weak var townPickerView: UIPickerView!
     
     private let towns = ["Ariena", "Beja", "Benarous", "Bizerte", "Gabes", "Gafsa", "Jendouba", "Kairouan", "Kasserine", "Kebili", "Kef", "Mahdia", "Manouba", "Medenine", "Monastir", "Nabeul", "Sfax", "Sidibouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan"]
@@ -136,6 +136,7 @@ class AddPostViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
+        uploadImageButton.setTitle("Change image", for: .normal)
     }
     
     @IBAction func addPost(_ sender: Any) {
@@ -191,15 +192,21 @@ class AddPostViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
                 (response) in
                 if (true){
                     print(response)
+                    self.back_to_menu()
+                    
                 }
             }
         } else {
             print("daaaaaate" , Date())
+            self.back_to_menu()
         }
         
     }
     
-    
+    func back_to_menu() {
+        //performSegue(withIdentifier: "back_to_menu", sender: self)
+        _ = navigationController?.popViewController(animated: true)
+    }
     
     
 }
