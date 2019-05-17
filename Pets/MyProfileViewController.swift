@@ -227,4 +227,7 @@ class MyProfileViewController: UIViewController {
         do { try context.execute(DelAllReqVar) }
         catch { print(error) }
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

@@ -50,7 +50,7 @@ class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDel
     func callButtonTapped(cell: PostCell) {
         let indexPath = self.collectionView.indexPath(for: cell)
         // Create the alert controller
-        let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to call this number?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Call", message: "Are you sure you want to call this number?", preferredStyle: .alert)
         // Create the actions
         let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
             UIAlertAction in
