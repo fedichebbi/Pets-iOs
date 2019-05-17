@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		544DF888227A118A003034B2 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544DF887227A118A003034B2 /* AddPostViewController.swift */; };
 		544DF88A227A24F4003034B2 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544DF889227A24F4003034B2 /* MyProfileViewController.swift */; };
-		544DF88C227A2D64003034B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544DF88B227A2D64003034B2 /* SettingsViewController.swift */; };
 		54507DD9225E23B200BF6669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54507DD8225E23B200BF6669 /* AppDelegate.swift */; };
 		54507DDB225E23B200BF6669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54507DDA225E23B200BF6669 /* ViewController.swift */; };
 		54507DDE225E23B200BF6669 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54507DDC225E23B200BF6669 /* Main.storyboard */; };
@@ -33,7 +32,6 @@
 		4D854FF1721F20738030178C /* Pods-Pets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pets.release.xcconfig"; path = "Target Support Files/Pods-Pets/Pods-Pets.release.xcconfig"; sourceTree = "<group>"; };
 		544DF887227A118A003034B2 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		544DF889227A24F4003034B2 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
-		544DF88B227A2D64003034B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		54507DD5225E23B200BF6669 /* Pets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54507DD8225E23B200BF6669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54507DDA225E23B200BF6669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 				54B525DB2270E04D003AFA43 /* PostCell.swift */,
 				544DF887227A118A003034B2 /* AddPostViewController.swift */,
 				544DF889227A24F4003034B2 /* MyProfileViewController.swift */,
-				544DF88B227A2D64003034B2 /* SettingsViewController.swift */,
 				54D7C271228CB76200C0902E /* SignUpViewController.swift */,
 				54C77F21228E1A40003903C5 /* PhoneViewController.swift */,
 			);
@@ -252,7 +249,6 @@
 				54B525DC2270E04D003AFA43 /* PostCell.swift in Sources */,
 				54B525DA2270DF3B003AFA43 /* PostsViewController.swift in Sources */,
 				54507DF0225E3DFF00BF6669 /* CollectionViewCell.swift in Sources */,
-				544DF88C227A2D64003034B2 /* SettingsViewController.swift in Sources */,
 				544DF88A227A24F4003034B2 /* MyProfileViewController.swift in Sources */,
 				54507DDB225E23B200BF6669 /* ViewController.swift in Sources */,
 				544DF888227A118A003034B2 /* AddPostViewController.swift in Sources */,

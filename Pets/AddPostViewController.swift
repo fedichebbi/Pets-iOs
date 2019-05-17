@@ -33,6 +33,9 @@ class AddPostViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         imagePicker.delegate = self
         self.townPickerView.delegate = self
         self.townPickerView.dataSource = self
+        
+        petDescription.layer.cornerRadius = 10
+        
         addButton.layer.cornerRadius = 10
         addButton.layer.shadowColor = UIColor.lightGray.cgColor
         addButton.layer.shadowOffset = CGSize(width:0,height: 2.0)

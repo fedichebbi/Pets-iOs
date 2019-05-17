@@ -84,7 +84,7 @@ class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDel
                 UIApplication.shared.openURL(url)
             }
         } else {
-            print("errrrror")
+            print("errrrror phone call")
         }
     }
     
@@ -190,21 +190,34 @@ class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         
         let postdict = posts[indexPath.row] as! Dictionary<String,Any>
-        cell.postTitle.text = postdict["town"] as? String
+        
         cell.postDescription.text = postdict["description"] as? String
         cell.postDate.text = postdict["date"] as? String
         let url = postdict["petImage"] as? String
         let imageUrl = "http://41.226.11.252:1180/pets/post/" + url!
         cell.postImage.af_setImage(withURL: URL(string: imageUrl)!)
         
+        
+        
+        cell.postImage.layer.cornerRadius = 10
+        cell.postImage.clipsToBounds = true
+        
+        let tow = postdict["town"] as? String
         let posttype = postdict["type"] as! String
+        var petType = postdict["petType"] as! String
+        
+        if (petType == "other" || petType == "Other") {
+            petType = "animal"
+        }
         
         if (posttype == "lost") {
-            cell.postIcon.image = itemImages[0]
-            cell.postTag.image = itemTags[0]
+            //cell.postIcon.image = itemImages[0]
+            //cell.postTag.image = itemTags[0]
+            cell.postTitle.text = "Lost " + petType + " near " + tow!
         } else {
-            cell.postIcon.image = itemImages[1]
-            cell.postTag.image = itemTags[1]
+            //cell.postIcon.image = itemImages[1]
+            //cell.postTag.image = itemTags[1]
+            cell.postTitle.text = "Found " + petType + " near " + tow!
         }
         //let title = posts[indexPath.row] as! Dictionary<String,Any>
         

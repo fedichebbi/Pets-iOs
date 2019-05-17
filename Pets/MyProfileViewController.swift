@@ -10,10 +10,15 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import CoreData
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class MyProfileViewController: UIViewController {
 
     
+    
+    @IBOutlet weak var deleteAccountButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var profile_image: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var phone: UITextField!
@@ -22,6 +27,10 @@ class MyProfileViewController: UIViewController {
     var id = ""
     var usrn = ""
     var password = ""
+    
+    var usernamee = ""
+    var ide = ""
+    let fbLoginManager:FBSDKLoginManager = FBSDKLoginManager()
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +84,31 @@ class MyProfileViewController: UIViewController {
         saveButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
         saveButton.layer.shadowRadius = 2.0
         saveButton.layer.shadowOpacity = 1.0
+        deleteAccountButton.layer.cornerRadius = 10
+        deleteAccountButton.layer.shadowColor = UIColor.lightGray.cgColor
+        deleteAccountButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
+        deleteAccountButton.layer.shadowRadius = 2.0
+        deleteAccountButton.layer.shadowOpacity = 1.0
+        logoutButton.layer.cornerRadius = 10
+        logoutButton.layer.shadowColor = UIColor.lightGray.cgColor
+        logoutButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
+        logoutButton.layer.shadowRadius = 2.0
+        logoutButton.layer.shadowOpacity = 1.0
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                let u = data.value(forKey: "username") as! String
+                let i = data.value(forKey: "id") as! String
+                usernamee = u
+                ide = i
+            }
+        } catch {
+            print("failed getData")
+        }
     }
     
 
@@ -105,7 +139,7 @@ class MyProfileViewController: UIViewController {
                 (response) in
                 if (true){
                     print(response)
-                    self.deleteAllData()
+                    self.deleteAllCoreData()
                     
                     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
                     let entity = NSEntityDescription.entity(forEntityName: "ConnectedUser", in: context)
@@ -138,7 +172,7 @@ class MyProfileViewController: UIViewController {
     }
     */
     
-    func deleteAllData()
+    func deleteAllCoreData()
     {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
@@ -147,4 +181,50 @@ class MyProfileViewController: UIViewController {
         catch { print(error) }
     }
 
+    @IBAction func deleteAccountAction(_ sender: Any) {
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to permanently delete your account " + usernamee + "?", preferredStyle: .alert)
+        // Create the actions
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            print("OK Pressed")
+            
+            let url = "http://41.226.11.252:1180/pets/user/deleteUser.php?id="+self.id
+            Alamofire.request(url).responseJSON{
+                response in
+                print ("deleted")
+            }
+            self.deleteAllData()
+            self.logout()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func logoutAction(_ sender: Any) {
+        self.deleteAllData()
+        self.fbLoginManager.logOut()
+        self.logout()
+    }
+    
+    func logout(){
+        performSegue(withIdentifier: "logout", sender: self)
+    }
+    
+    func deleteAllData()
+    {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let ReqVar = NSFetchRequest<NSFetchRequestResult>(entityName: "ConnectedUser")
+        let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: ReqVar)
+        do { try context.execute(DelAllReqVar) }
+        catch { print(error) }
+    }
 }

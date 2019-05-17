@@ -12,6 +12,7 @@ import CoreData
 
 class PhoneViewController: UIViewController {
 
+    @IBOutlet weak var SubmitButton: UIButton!
     @IBOutlet weak var phoneTF: UITextField!
     var id:String?
     var username:String?
@@ -19,6 +20,11 @@ class PhoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        SubmitButton.layer.cornerRadius = 10
+        SubmitButton.layer.shadowColor = UIColor.lightGray.cgColor
+        SubmitButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
+        SubmitButton.layer.shadowRadius = 2.0
+        SubmitButton.layer.shadowOpacity = 1.0
         // Do any additional setup after loading the view.
     }
     
