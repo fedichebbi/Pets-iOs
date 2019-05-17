@@ -11,6 +11,7 @@ import UIKit
 //1. delegate method
 protocol MyCellDelegate: AnyObject {
     func btnDeleteTapped(cell: PostCell)
+    func callButtonTapped(cell: PostCell)
 }
 
 class PostCell: UICollectionViewCell {
@@ -35,5 +36,8 @@ class PostCell: UICollectionViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postTitle: UILabel!
     
+    @IBAction func callAction(_ sender: Any) {
+        delegate?.callButtonTapped(cell: self)
+    }
     
 }

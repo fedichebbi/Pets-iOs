@@ -11,13 +11,18 @@ import Alamofire
 
 class SignUpViewController: ViewController {
 
+    @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var username: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        signupButton.layer.cornerRadius = 10
+        signupButton.layer.shadowColor = UIColor.lightGray.cgColor
+        signupButton.layer.shadowOffset = CGSize(width:0,height: 2.0)
+        signupButton.layer.shadowRadius = 2.0
+        signupButton.layer.shadowOpacity = 1.0
     }
     
 

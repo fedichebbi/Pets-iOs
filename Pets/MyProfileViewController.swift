@@ -13,6 +13,8 @@ import CoreData
 
 class MyProfileViewController: UIViewController {
 
+    
+    @IBOutlet weak var profile_image: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var saveButton: UIButton!
@@ -34,6 +36,22 @@ class MyProfileViewController: UIViewController {
                 let u = data.value(forKey: "username") as! String
                 let i = data.value(forKey: "id") as! String
                 let pwd = data.value(forKey: "password") as! String
+                let imgURL = "https://graph.facebook.com/"+pwd+"/picture?width=200&height=200"
+                print(imgURL)
+                let url = URL(string: imgURL)
+                do {
+                    let data = try Data(contentsOf: url!)
+                    print("imagefbdata",data)
+                    profile_image.image = UIImage(data: data)
+                    profile_image.layer.borderWidth = 3
+                    profile_image.layer.masksToBounds = false
+                    profile_image.layer.borderColor = UIColor.white.cgColor
+                    profile_image.layer.cornerRadius = profile_image.frame.height/2
+                    profile_image.clipsToBounds = true
+                }
+                catch{
+                    print("error")
+                }
                 
                 self.pho = p
                 self.id = i

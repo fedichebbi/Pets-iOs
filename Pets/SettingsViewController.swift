@@ -9,14 +9,15 @@
 import UIKit
 import CoreData
 import Alamofire
-
+import FBSDKCoreKit
+import FBSDKLoginKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var deleteAccountButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     var username = ""
     var id = ""
-    
+    let fbLoginManager:FBSDKLoginManager = FBSDKLoginManager()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,6 +61,7 @@ class SettingsViewController: UIViewController {
     */
     @IBAction func logoutAction(_ sender: Any) {
         self.deleteAllData()
+        self.fbLoginManager.logOut()
         self.logout()
     }
     @IBAction func deleteAccountAction(_ sender: Any) {

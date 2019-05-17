@@ -47,6 +47,47 @@ class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDel
         self.present(alertController, animated: true, completion: nil)
     }
     
+    func callButtonTapped(cell: PostCell) {
+        let indexPath = self.collectionView.indexPath(for: cell)
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Delete", message: "Are you sure you want to call this number?", preferredStyle: .alert)
+        // Create the actions
+        let okAction = UIAlertAction(title: "Yes", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            print("OK Pressed")
+            
+            let postdict = self.posts[indexPath!.row] as! Dictionary<String,Any>
+            let postUser = postdict["user_id"] as! Dictionary<String,Any>
+            let userNumber = postUser["phone"] as? String
+            print("userphone", userNumber!)
+            let num = String(userNumber!.filter { !"\r\n\n\t\r".contains($0) })
+            self.dialNumber(number: num)
+
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            print("Cancel Pressed")
+        }
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func dialNumber(number : String) {
+        if let url = URL(string: "tel://\(number)"),
+            UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        } else {
+            print("errrrror")
+        }
+    }
+    
     
     var type:String?
     var userId = ""

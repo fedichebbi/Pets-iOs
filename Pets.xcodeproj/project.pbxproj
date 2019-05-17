@@ -20,6 +20,7 @@
 		54507DF0225E3DFF00BF6669 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54507DEF225E3DFF00BF6669 /* CollectionViewCell.swift */; };
 		54B525DA2270DF3B003AFA43 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B525D92270DF3B003AFA43 /* PostsViewController.swift */; };
 		54B525DC2270E04D003AFA43 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B525DB2270E04D003AFA43 /* PostCell.swift */; };
+		54C77F22228E1A40003903C5 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C77F21228E1A40003903C5 /* PhoneViewController.swift */; };
 		54D7C272228CB76200C0902E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D7C271228CB76200C0902E /* SignUpViewController.swift */; };
 		54D879DD227A116900A69349 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D879DB227A116900A69349 /* FBSDKCoreKit.framework */; };
 		54D879DE227A116900A69349 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D879DC227A116900A69349 /* FBSDKLoginKit.framework */; };
@@ -45,6 +46,7 @@
 		54507DEF225E3DFF00BF6669 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		54B525D92270DF3B003AFA43 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		54B525DB2270E04D003AFA43 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		54C77F21228E1A40003903C5 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
 		54D7C271228CB76200C0902E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		54D879DB227A116900A69349 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		54D879DC227A116900A69349 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				544DF889227A24F4003034B2 /* MyProfileViewController.swift */,
 				544DF88B227A2D64003034B2 /* SettingsViewController.swift */,
 				54D7C271228CB76200C0902E /* SignUpViewController.swift */,
+				54C77F21228E1A40003903C5 /* PhoneViewController.swift */,
 			);
 			path = Pets;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				54507DDB225E23B200BF6669 /* ViewController.swift in Sources */,
 				544DF888227A118A003034B2 /* AddPostViewController.swift in Sources */,
 				54507DE1225E23B200BF6669 /* Pets.xcdatamodeld in Sources */,
+				54C77F22228E1A40003903C5 /* PhoneViewController.swift in Sources */,
 				54507DD9225E23B200BF6669 /* AppDelegate.swift in Sources */,
 				54507DEE225E293700BF6669 /* HomePage.swift in Sources */,
 			);
@@ -403,12 +407,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G96V29LG5G;
+				DEVELOPMENT_TEAM = 6B73J4X6JN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Pets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,12 +431,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G96V29LG5G;
+				DEVELOPMENT_TEAM = 6B73J4X6JN;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Pets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
