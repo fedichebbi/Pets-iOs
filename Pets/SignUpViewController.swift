@@ -52,9 +52,11 @@ class SignUpViewController: ViewController {
             print(request.httpBody)
             Alamofire.request(request).responseJSON {
                 (response) in
-                if (true){
-                    print(response)
+                switch response.result {
+                case .success(let data ):
                     self.signup_success()
+                case .failure(let err):
+                    print(err.localizedDescription)
                 }
             }
         } else {

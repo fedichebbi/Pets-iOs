@@ -137,7 +137,8 @@ class MyProfileViewController: UIViewController {
             print(request.httpBody)
             Alamofire.request(request).responseJSON {
                 (response) in
-                if (true){
+                switch response.result {
+                case .success(let data):
                     print(response)
                     self.deleteAllCoreData()
                     
@@ -156,7 +157,10 @@ class MyProfileViewController: UIViewController {
                     } catch {
                         print("failed saving to coreData")
                     }
+                case .failure(let err):
+                    print(err.localizedDescription)
                 }
+
             }
         } else {
             print("error update user" , Date())

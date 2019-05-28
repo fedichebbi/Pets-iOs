@@ -31,9 +31,16 @@ class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDel
             
             Alamofire.request(url).responseJSON{
             response in
-            print ("deleted")
-            self.posts.removeObject(at: indexPath!.row)
-            self.collectionView.reloadData()
+                //switch response.result {
+                //case .success(let data):
+                    print ("deleted")
+                    self.posts.removeObject(at: indexPath!.row)
+                    self.collectionView.reloadData()
+                //case .failure(let err):
+                    //print(err.localizedDescription)
+
+                //}
+
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
@@ -125,34 +132,43 @@ class PostsViewController: UIViewController, MyCellDelegate, UICollectionViewDel
         
         Alamofire.request("http://41.226.11.252:1180/pets/post/allPosts.php").responseJSON{
             response in
-            let postsArray = (response.result.value as! NSArray)
-            var posts:NSMutableArray = []
-            for post in postsArray {
-                let postDict = post as! Dictionary<String,Any>
-                let postType = postDict["type"] as! String
-                let userDict = postDict["user_id"] as! Dictionary<String,Any>
-                let user = userDict["id"] as! String
-                print(user)
-                //print(postDict["town"] as! String)
-                if (self.type == "My posts") {
-                    if (user == self.userId) {
-                        posts.add(post)
-                        self.hisPosts = true
+            switch response.result {
+            case .success(let data ):
+                let postsArray = (response.result.value as! NSArray)
+                var posts:NSMutableArray = []
+                for post in postsArray {
+                    let postDict = post as! Dictionary<String,Any>
+                    let postType = postDict["type"] as! String
+                    let userDict = postDict["user_id"] as! Dictionary<String,Any>
+                    let user = userDict["id"] as! String
+                    print(user)
+                    //print(postDict["town"] as! String)
+                    if (self.type == "My posts") {
+                        if (user == self.userId) {
+                            posts.add(post)
+                            self.hisPosts = true
+                        }
                     }
+                    else if (postType == self.type!.lowercased()){
+                        print("adada")
+                        posts.add(post)
+                    }
+                    // names[i]=tvShowDict["name"] as! String
                 }
-                else if (postType == self.type!.lowercased()){
-                    print("adada")
-                    posts.add(post)
-                }
-                // names[i]=tvShowDict["name"] as! String
+                self.posts = posts
+                self.collectionView.reloadData()        //seasonImg.image = UIImage(named: image!)
+                /*seasonImg.af_setImage(withURL: URL(string: image!)!)
+                 summary.text = overview!*/
+            // Do any additional setup after loading the view.
+            case .failure(let err):
+                print(err.localizedDescription)
             }
-            self.posts = posts
-            self.collectionView.reloadData()        //seasonImg.image = UIImage(named: image!)
-        /*seasonImg.af_setImage(withURL: URL(string: image!)!)
-        summary.text = overview!*/
-        // Do any additional setup after loading the view.
+
     }
     }
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }

@@ -193,10 +193,11 @@ class AddPostViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             print(request.httpBody)
             Alamofire.request(request).responseJSON {
                 (response) in
-                if (true){
-                    print(response)
+                switch response.result {
+                case .success(let data ):
                     self.back_to_menu()
-                    
+                case .failure(let err):
+                    print(err.localizedDescription)
                 }
             }
         } else {

@@ -67,33 +67,39 @@ class ViewController: UIViewController {
         
         Alamofire.request(request).responseJSON {
             (response) in
-            let user = response.result.value as! Dictionary<String,String>
-            if (user != Dictionary<String,String>()){
-                let usr = user["username"] as! String
-                let pwd = user["password"] as! String
-                let id = user["id"] as! String
-                let pho = user["phone"] as! String
-                
-                //print(usr)
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                let entity = NSEntityDescription.entity(forEntityName: "ConnectedUser", in: context)
-                let newEntity = NSManagedObject(entity: entity!, insertInto: context)
-                
-                newEntity.setValue(usr, forKey: "username")
-                newEntity.setValue(pwd, forKey: "password")
-                newEntity.setValue(id, forKey: "id")
-                newEntity.setValue(pho, forKey: "phone")
-                
-                do {
-                    try context.save()
-                    print("user saved to coreData")
-                } catch {
-                    print("failed saving to coreData")
+            switch response.result {
+            case .success(let Json):
+                let user = response.result.value as! Dictionary<String,String>
+                if (user != Dictionary<String,String>()){
+                    let usr = user["username"] as! String
+                    let pwd = user["password"] as! String
+                    let id = user["id"] as! String
+                    let pho = user["phone"] as! String
+                    
+                    //print(usr)
+                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "ConnectedUser", in: context)
+                    let newEntity = NSManagedObject(entity: entity!, insertInto: context)
+                    
+                    newEntity.setValue(usr, forKey: "username")
+                    newEntity.setValue(pwd, forKey: "password")
+                    newEntity.setValue(id, forKey: "id")
+                    newEntity.setValue(pho, forKey: "phone")
+                    
+                    do {
+                        try context.save()
+                        print("user saved to coreData")
+                    } catch {
+                        print("failed saving to coreData")
+                    }
+                    
+                    self.loginSuccess()
                 }
-                
-                self.loginSuccess()
+                else {print("wrong data")}
+            case .failure(let err):
+                print(err.localizedDescription)
             }
-            else {print("wrong data")}
+            
         }
     }
     
@@ -172,32 +178,37 @@ class ViewController: UIViewController {
                         
                         Alamofire.request(request).responseJSON {
                             (response) in
-                            print("reesp",response)
-                            let user = response.result.value as! Dictionary<String,String>
-                            if (user != Dictionary<String,String>()){
-                                let usr = user["username"] as! String
-                                let pwd = user["password"] as! String
-                                let id = user["id"] as! String
-                                let pho = user["phone"] as! String
-                                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                                let entity = NSEntityDescription.entity(forEntityName: "ConnectedUser", in: context)
-                                let newEntity = NSManagedObject(entity: entity!, insertInto: context)
-                                newEntity.setValue(usr, forKey: "username")
-                                newEntity.setValue(pwd, forKey: "password")
-                                newEntity.setValue(id, forKey: "id")
-                                newEntity.setValue(pho, forKey: "phone")
-                                do {
-                                    try context.save()
-                                    print("user saved to coreData")
-                                } catch {
-                                    print("failed saving to coreData")
+                            switch response.result {
+                            case .success(let Json):
+                                let user = response.result.value as! Dictionary<String,String>
+                                if (user != Dictionary<String,String>()){
+                                    let usr = user["username"] as! String
+                                    let pwd = user["password"] as! String
+                                    let id = user["id"] as! String
+                                    let pho = user["phone"] as! String
+                                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                                    let entity = NSEntityDescription.entity(forEntityName: "ConnectedUser", in: context)
+                                    let newEntity = NSManagedObject(entity: entity!, insertInto: context)
+                                    newEntity.setValue(usr, forKey: "username")
+                                    newEntity.setValue(pwd, forKey: "password")
+                                    newEntity.setValue(id, forKey: "id")
+                                    newEntity.setValue(pho, forKey: "phone")
+                                    do {
+                                        try context.save()
+                                        print("user saved to coreData")
+                                    } catch {
+                                        print("failed saving to coreData")
+                                    }
+                                    self.loginSuccess()
                                 }
-                                self.loginSuccess()
+                                else {
+                                    print("wrong data")
+                                    self.fb_success()
+                                }
+                            case .failure(let err) :
+                                print(err.localizedDescription)
                             }
-                            else {
-                                print("wrong data")
-                                self.fb_success()
-                            }
+
                         }
                         
                         
